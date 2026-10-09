@@ -1,25 +1,46 @@
 # TaskTracker
 
-Aplicação de linha de comando para organizar tarefas do dia a dia. O projeto implementa a etapa intermediária do Bootcamp II a partir do planejamento lógico da Fase 1.
+O **TaskTracker** é uma aplicação de linha de comando desenvolvida em Python para apoiar a organização de tarefas do dia a dia. Este projeto corresponde à Fase 2 do Bootcamp II e transforma em código o planejamento lógico elaborado na Fase 1.
 
-## Funcionalidades
+## Objetivo
 
-- Cadastrar tarefas com título, descrição, prioridade e data limite.
-- Validar título obrigatório, prioridade (`Alta`, `Média` ou `Baixa`) e data no formato `DD/MM/AAAA`.
-- Evitar tarefas duplicadas com as mesmas informações principais.
-- Listar tarefas e exibir contagens de tarefas totais, pendentes e concluídas.
-- Concluir tarefas pendentes.
-- Salvar os dados localmente em `tarefas.json` para manter as alterações entre execuções.
+Oferecer uma forma simples de registrar atividades, acompanhar suas informações principais e identificar tarefas pendentes ou concluídas.
 
-## Tecnologias
+## Funcionalidades implementadas
 
-- Python 3.10 ou superior
-- Biblioteca padrão do Python (`json`, `datetime`, `pathlib`)
-- Git e GitHub para versionamento
+- **Cadastro de tarefas** com título, descrição, prioridade, data limite e status.
 
-## Estrutura
+- **Validação do título**, que é obrigatório e não pode conter apenas espaços.
 
-```text
+- **Validação da prioridade**, aceitando `Alta`, `Média` ou `Baixa`; variações de maiúsculas e minúsculas são normalizadas.
+
+- **Validação da data limite**, exigindo uma data existente no formato `DD/MM/AAAA`.
+
+- **Prevenção de duplicatas**, comparando título, descrição, prioridade e data limite.
+
+- **Listagem de tarefas**, exibindo os campos de cada registro e os totais de tarefas, pendentes e concluídas.
+
+- **Conclusão de tarefas**, alterando o status de uma tarefa pendente para `Concluída`.
+
+- **Persistência local**, mantendo os registros em um arquivo JSON entre execuções.
+
+- **Menu contínuo**, com opções para cadastrar, visualizar, concluir tarefas e encerrar a aplicação.
+
+## Regras de negócio
+
+Toda tarefa cadastrada recebe inicialmente o status `Pendente`. O título não pode ficar vazio, a prioridade deve pertencer às opções permitidas e a data precisa ser válida. O programa também impede a inclusão de uma tarefa quando já existe outra com o mesmo título, descrição, prioridade e data limite.
+
+## Tecnologias e implementação
+
+- **Python 3** e bibliotecas padrão (`json`, `datetime` e `pathlib`).
+
+- **Git** para controle de versão do desenvolvimento.
+
+- Armazenamento local dos dados em JSON, sem dependências externas.
+
+## Organização do repositório
+
+```
 tasktracker-projeto/
 ├── README.md
 ├── .gitignore
@@ -29,37 +50,12 @@ tasktracker-projeto/
     └── main.py
 ```
 
-## Instalação e execução
+- `src/main.py`: implementação da aplicação, incluindo menu, validações, operações sobre tarefas e persistência.
 
-Não há dependências externas. Com Python 3 instalado, execute na raiz do repositório:
+- `docs/planejamento_logico.pdf`: planejamento lógico e arquitetural produzido na Fase 1.
 
-```bash
-python3 src/main.py
-```
+- `.gitignore`: regras para excluir arquivos temporários do Python, ambientes virtuais e o arquivo local `tarefas.json` do controle de versão.
 
-A data limite deve ser informada como `DD/MM/AAAA`. O arquivo `tarefas.json` será criado automaticamente na raiz após o primeiro cadastro ou alteração.
+## Escopo atual
 
-## Uso
-
-No menu, escolha uma opção para cadastrar ou listar tarefas, concluir uma tarefa ou encerrar o programa. Prioridade aceita: `Alta`, `Média` ou `Baixa`.
-
-## Versionamento
-
-O histórico de desenvolvimento é organizado em commits incrementais. Para publicar em uma conta GitHub, crie um repositório remoto vazio e associe-o, por exemplo:
-
-```bash
-git remote add origin https://github.com/SEU-USUARIO/tasktracker-projeto.git
-git push -u origin main
-```
-
-## Vídeo demonstrativo (Fase 2)
-
-Grave em formato horizontal 16:9, com duração de 5 minutos, mostrando o repositório/histórico, execução do programa, rejeição de dados inválidos, cadastro válido e listagem atualizada. O vídeo deve seguir os requisitos da atividade e ser publicado como Público ou Não Listado no YouTube.
-
-## Planejamento da Fase 1
-
-O documento original está em [`docs/planejamento_logico.pdf`](docs/planejamento_logico.pdf).
-
-## Observações de implementação
-
-A prioridade aceita também variações de caixa (por exemplo, `alta`) e normaliza a exibição. O cadastro rejeita título vazio e datas inexistentes, e a verificação de duplicidade compara título, descrição, prioridade e data sem diferenciar maiúsculas/minúsculas. O menu inclui a opção de conclusão prevista no planejamento lógico da Fase 1. A persistência JSON é local e não faz parte da árvore versionada.
+O TaskTracker é uma aplicação local, baseada em terminal e destinada a um único usuário. A versão atual permite cadastrar, consultar e concluir tarefas. Não inclui edição ou exclusão de registros, sincronização entre dispositivos, interface gráfica nem testes automatizados.
