@@ -13,7 +13,7 @@ STATUS_VALIDOS = {"Pendente", "Concluída"}
 
 
 def carregar_tarefas() -> list[dict[str, str]]:
-    """Carrega tarefas salvas. Arquivo ausente ou inválido inicia lista vazia."""
+   
     try:
         with ARQUIVO_DADOS.open("r", encoding="utf-8") as arquivo:
             dados = json.load(arquivo)
@@ -28,7 +28,7 @@ def carregar_tarefas() -> list[dict[str, str]]:
 
 
 def salvar_tarefas(tarefas: list[dict[str, str]]) -> None:
-    """Persiste a lista de tarefas em JSON legível."""
+    
     try:
         with ARQUIVO_DADOS.open("w", encoding="utf-8") as arquivo:
             json.dump(tarefas, arquivo, ensure_ascii=False, indent=2)
@@ -37,7 +37,7 @@ def salvar_tarefas(tarefas: list[dict[str, str]]) -> None:
 
 
 def tarefa_valida(tarefa: dict[str, Any]) -> bool:
-    """Verifica se um registro carregado contém campos e valores permitidos."""
+    
     try:
         datetime.strptime(tarefa["data_limite"], "%d/%m/%Y")
         return (
@@ -78,7 +78,7 @@ def obter_data_limite() -> str:
 
 
 def tarefa_duplicada(nova: dict[str, str], tarefas: list[dict[str, str]]) -> bool:
-    """Detecta duplicata comparando título, descrição, prioridade e data."""
+    
     campos = ("titulo", "descricao", "prioridade", "data_limite")
     return any(
         all(t.get(campo, "").strip().casefold() == nova[campo].strip().casefold() for campo in campos)
