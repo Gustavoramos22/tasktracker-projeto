@@ -59,3 +59,7 @@ Grave em formato horizontal 16:9, com duração de 5 minutos, mostrando o reposi
 ## Planejamento da Fase 1
 
 O documento original está em [`docs/planejamento_logico.pdf`](docs/planejamento_logico.pdf).
+
+## Observações de implementação
+
+A prioridade aceita também variações de caixa (por exemplo, `alta`) e normaliza a exibição. O cadastro rejeita título vazio e datas inexistentes, e a verificação de duplicidade compara título, descrição, prioridade e data sem diferenciar maiúsculas/minúsculas. O menu inclui a opção de conclusão prevista no planejamento lógico da Fase 1. A persistência JSON é local e não faz parte da árvore versionada.
